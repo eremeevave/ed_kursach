@@ -1,0 +1,81 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family: 'Bree Serif';
+}
+
+
+/*BACKGROUND SETTINGS*/
+
+.large-header {
+  position: relative;
+  width: 100%;
+  background: #333;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center center;
+  z-index: 1;
+}
+#large-header {
+  background-image: url("../images/backgroung.jpg");
+}
+
+/*NAVBAR*/
+
+.navbar{
+	background: black;
+}
+.navbar-nav {
+	flex-direction: row;
+}
+    
+.nav-link {
+	padding-right: .5rem !important;
+	padding-left: .5rem !important;
+}
+    
+/*Buttons*/
+.showAllButton, .newApplication{
+	position: absolute;
+  	margin: 0;
+  	padding: 5%;
+  	color: white;
+  	text-align: center;
+  	top: 40%;
+	border: 2px solid white;
+	border-radius: 50%;
+}
+
+.showAllButton a, .newApplication a{
+	text-decoration: none;
+	color:white;
+	font-size: 30px;
+}
+
+.showAllButton{
+	left:10%;
+}
+.newApplication{
+	right:10%;
+}
+
+
+@media only screen and (max-width: 992px) {
+	.showAllButton{
+		top:20%;
+		width:70%;
+		left:10%;
+	}
+	.newApplication{
+		top:60%;
+		width:70%;
+		left:10%;
+	}
+}
+
+
+
+
+
+
+

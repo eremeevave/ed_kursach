@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>AXEL web interface</title>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <script>
+        let info
+        document.addEventListener("DOMContentLoaded", function (event) {
+            const cookies = document.cookie.split(";")
+            const user_id = cookies[0].split("=")[1]
+            fetch(`/user-settings/info?user_id=${user_id}`).then(response => {
+                return response.text()
+            }).then(data => {
+                info = JSON.parse(data)
+                document.getElementById('username').innerText = `Username: ${info.username}`
+                document.getElementById('email').innerText = `Email: ${info.email}`
+                document.getElementById('phone').innerText = `Phone: ${info.phone}`
+                document.getElementById('fname').innerText = `First name: ${info.firstname}`
+                document.getElementById('lname').innerText = `Last name: ${info.lastname}`
+                document.getElementById('company').innerText = `Company: ${info.company}`
+                document.getElementById('address1').innerText = `Address1: ${info.address_1}`
+                document.getElementById('address2').innerText = `Address2: ${info.address_2}`
+            })
+
+        })
+        function changeUsername(){
+            const newUsername = document.getElementById('newusername').value
+            let data = {email: info.email, username: newUsername}
+            data = Object.keys(data).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key])).join('&')
+            fetch('/user-settings/change-username', {method:"POST",mode: "cors",headers: {
+                'Content-Type':'application/x-www-form-urlencoded', 'Access-Control-Allow-Origin':'*'
+            }, body: data}).then(response => {
+                return response.text()
+            }).then(data => {
+                location.reload()
+            })
+        }
+
+        function changeEmail(){
+            const newEmail = document.getElementById('newemail').value
+            let data = {oldemail: info.email, newemail: newEmail}
+            data = Object.keys(data).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key])).join('&')
+            fetch('/user-settings/change-email', {method:"POST",mode: "cors",headers: {
+                'Content-Type':'application/x-www-form-urlencoded', 'Access-Control-Allow-Origin':'*'
+            }, body: data}).then(response => {
+                return response.text()
+            }).then(data => {
+                location.reload()
+            })
+        }
+
+        function changePhone(){
+            const newPhone = document.getElementById('newphone').value
+            let data = {email: info.email, newphone: newPhone}
+            data = Object.keys(data).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key])).join('&')
+            fetch('/user-settings/change-phone', {method:"POST",mode: "cors",headers: {
+                'Content-Type':'application/x-www-form-urlencoded', 'Access-Control-Allow-Origin':'*'
+            }, body: data}).then(response => {
+                return response.text()
+            }).then(data => {
+                location.reload()
+            })
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <h2>User settings</h2>
+        <pre><p align='center'><a href="/index">Back to main page</a><b> | </b><a href="/logout">Logout</a></p></pre>
+    </header>
+    <div id="profile-info-old" class="col-sm-6">
+        <label id="fname"></label><br>
+        <label id="lname"></label><br>
+        <label id="username"></label><br>
+        <label id="email"></label><br>
+        <label id="phone"></label><br>
+        <label id="company"></label><br>
+        <label id="address1"></label><br>
+        <label id="address2"></label><br>
+    </div>
+    <div id="profile-info" class="col-sm-6">
+        <div class="well" name="droparea" id="upload-form">
+            <h3> Edit user credentials </h2>
+                <label> New username</label>
+                <input type="text" id="newusername" name="username"> 
+                <button type="button" onclick="changeUsername()">Submit</button>
+                <br>
+                <label>New email</label>
+                <input type="email" id="newemail" name="email"> 
+                <button type="button" onclick="changeEmail()">Submit</button>
+                <br>
+                <label>New phone number</label>
+                <input type="number" id="newphone" name="phone"> 
+                <button type="button" onclick="changePhone()">Submit</button>
+                <br>
+                <a href="/user-settings/change-password">Change password</a>
+                <br>
+        </div>
+    </div>
+</body>
+
+</html>
