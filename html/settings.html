@@ -8,40 +8,17 @@
 </head>
 <body>
 <div class="settings">
-
-	<div class="profile-photo-div" id="profile-photo-div">
-	  <div class="profile-img-div" id="profile-img-div">
-		<img id="profile-img" src="https://s3.amazonaws.com/FringeBucket/default-user.png"/>
-		<input id="x-position" type="range" name="x-position" value="0" min="0"/>
-		<input id="y-position" type="range" name="y-position" value="0" min="0"/>
-	  </div>
-	  <div class="profile-buttons-div">
-		<div class="profile-img-input" id="profile-img-input">
-		  <label class="button" id="change-photo-label" for="change-photo">UPLOAD PHOTO</label>
-		  <input id="change-photo" name="change-photo" type="file" style="display: none;" accept="image/*"/>
-		</div>
-		<div class="profile-img-confirm" id="profile-img-confirm" style="display: none;">
-		  <div class="button half green" id="save-img"><i class="fa fa-check" aria-hidden="true"></i></div>
-		  <div class="button half red" id="cancel-img"><i class="fa fa-remove" aria-hidden="true"></i></div>
-		</div>
-	  </div>
-	</div>
-	<div class="error" id="error">min sizes 400*400px</div>
-	<canvas id="croppedPhoto" width="400" height="400"></canvas>
-
 	<form>
 		<p>Change username:</p>
 		<input type="text" placeholder="new username">
 		<p>Change e-mail</p>
 		<input type="email" placeholder="new e-mail">
 		<p>Change password</p>
-		<input type="password" placeholder="OLD PASSWORD"> 
+		<input type="password" placeholder="old password"> 
 		<input type="password" placeholder="new password">
 		<input type="submit" value="Submit">
 	</form>
-	
 </div>
 
-<script src="../js/settings_script.js"></script>
 </body>
 </html>
